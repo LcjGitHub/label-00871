@@ -10,8 +10,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // 1. 初始化自定义 Select 组件
+        const styleSelect = document.getElementById('style-select');
         const speedSelect = document.getElementById('speed-select');
         const countSelect = document.getElementById('count-select');
+        if (styleSelect) new CustomSelect(styleSelect);
         if (speedSelect) new CustomSelect(speedSelect);
         if (countSelect) new CustomSelect(countSelect);
 

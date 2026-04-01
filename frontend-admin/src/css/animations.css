@@ -8,8 +8,56 @@
     to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideOutDown {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-50px); }
+}
+
+@keyframes slideInFromRight {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes listItemMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
 /* 滚动动画通常由 JS 控制 transform，但这里可以定义一些辅助动画 */
 .rolling {
     /* 可以在这里添加模糊效果增强速度感 */
     /* filter: blur(1px); */
+}
+
+.lottery-list.style-single li {
+    animation: slideInUp 0.2s ease-out;
+}
+
+.lottery-list.style-list {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.lottery-list.style-list li {
+    margin: 4px 0;
+    animation: slideInUp 0.15s ease-out;
+}
+
+.lottery-list.style-slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.lottery-list.style-slide li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation: slideInFromRight 0.3s ease-out;
 }

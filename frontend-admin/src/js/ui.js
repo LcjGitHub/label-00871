@@ -17,6 +17,7 @@ export class UIController {
             btnStart: document.getElementById('btn-start'),
             btnStartText: document.querySelector('#btn-start .btn-text'),
             btnReset: document.getElementById('btn-reset'),
+            selectStyle: document.getElementById('style-select'),
             selectSpeed: document.getElementById('speed-select'),
             selectCount: document.getElementById('count-select')
         };
@@ -50,6 +51,10 @@ export class UIController {
         });
 
         // 表单控件变化反馈
+        this.els.selectStyle.addEventListener('change', () => {
+            this.toast.show('滚动样式已更新', 'info');
+        });
+
         this.els.selectSpeed.addEventListener('change', () => {
             this.toast.show('速度设置已更新', 'info');
         });
@@ -85,7 +90,8 @@ export class UIController {
 
         // 3. 开始动画
         const speedMode = this.els.selectSpeed.value;
-        this.animation.start(() => this.engine.getRandomSample(), speedMode);
+        const styleMode = this.els.selectStyle.value;
+        this.animation.start(() => this.engine.getRandomSample(), speedMode, styleMode);
 
         // 4. 等待动画结束并显示结果
         setTimeout(() => {
@@ -148,6 +154,7 @@ export class UIController {
     _setBusy(isBusy) {
         this.els.btnStart.disabled = isBusy;
         this.els.btnReset.disabled = isBusy;
+        this.els.selectStyle.disabled = isBusy;
         this.els.selectSpeed.disabled = isBusy;
         this.els.selectCount.disabled = isBusy;
 
