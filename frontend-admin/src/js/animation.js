@@ -5,17 +5,24 @@ export class AnimationController {
         this.displayElement = displayElement; // ul#lottery-list
         this.animationFrameId = null;
         this.isAnimating = false;
+        this.currentStyle = CONFIG.STYLE.default;
     }
 
     /**
      * 开始滚动动画
      * @param {Function} dataProvider 提供随机数据的回调函数
      * @param {string} speedMode 速度模式 'slow' | 'normal' | 'fast'
+     * @param {string} styleMode 样式模式 'default' | 'blur' | 'glow' | 'bounce'
      */
-    start(dataProvider, speedMode = 'normal') {
+    start(dataProvider, speedMode = 'normal', styleMode = 'default') {
         if (this.isAnimating) return;
         this.isAnimating = true;
+        this.currentStyle = styleMode;
         this.displayElement.innerHTML = ''; // 清空列表
+        
+        // 移除所有样式类，应用选中的样式
+        this.displayElement.classList.remove('rolling-default', 'rolling-blur', 'rolling-glow', 'rolling-bounce');
+        this.displayElement.classList.add(`rolling-${styleMode}`);
 
         const speed = CONFIG.SPEED[speedMode] || CONFIG.SPEED.normal;
         let lastTime = 0;
@@ -45,6 +52,8 @@ export class AnimationController {
         if (this.animationFrameId) {
             cancelAnimationFrame(this.animationFrameId);
         }
+        // 移除滚动样式类，恢复正常显示
+        this.displayElement.classList.remove('rolling-default', 'rolling-blur', 'rolling-glow', 'rolling-bounce');
     }
 
     _renderItem(item) {
