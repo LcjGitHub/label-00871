@@ -1,0 +1,13 @@
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: frontend-admin/Dockerfile
+    container_name: lottery-system
+    ports:
+      - "8080:80"
+    volumes:
+      # 挂载 data.js 允许在不重启容器的情况下修改数据
+      - ./frontend-admin/data.js:/usr/share/nginx/html/data.js
+    restart: always

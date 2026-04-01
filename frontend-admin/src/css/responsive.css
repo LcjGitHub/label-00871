@@ -1,0 +1,77 @@
+@media (max-width: 600px) {
+    .settings-group {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .header-content {
+        padding: var(--spacing-md);
+    }
+
+    .app-header .logo {
+        font-size: var(--font-size-h2);
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .logo-main {
+        font-size: var(--font-size-h2);
+    }
+
+    .logo-sub {
+        font-size: var(--font-size-xs);
+    }
+
+    .app-header .logo .icon {
+        font-size: 2rem;
+    }
+
+    .app-header .subtitle {
+        font-size: var(--font-size-xs);
+    }
+
+    .header-features {
+        gap: var(--spacing-sm);
+    }
+
+    .feature-item {
+        font-size: var(--font-size-xs);
+        padding: 4px 12px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .footer-divider {
+        display: none;
+    }
+
+    .lottery-window {
+        height: 140px;
+    }
+
+    .lottery-list li {
+        font-size: var(--font-size-h2);
+    }
+
+    .card {
+        padding: var(--spacing-md);
+    }
+
+    .btn-lg {
+        height: 44px;
+        font-size: var(--font-size-body);
+        padding: 0 var(--spacing-lg);
+    }
+
+    .result-header h2 {
+        font-size: var(--font-size-h3);
+    }
+
+    .winners-display {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: var(--spacing-xs);
+    }
+}
