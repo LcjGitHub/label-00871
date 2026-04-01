@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         // 1. 初始化自定义 Select 组件
         const speedSelect = document.getElementById('speed-select');
+        const styleSelect = document.getElementById('style-select');
         const countSelect = document.getElementById('count-select');
         if (speedSelect) new CustomSelect(speedSelect);
+        if (styleSelect) new CustomSelect(styleSelect);
         if (countSelect) new CustomSelect(countSelect);
 
         // 2. 加载数据
