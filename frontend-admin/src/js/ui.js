@@ -18,7 +18,8 @@ export class UIController {
             btnStartText: document.querySelector('#btn-start .btn-text'),
             btnReset: document.getElementById('btn-reset'),
             selectSpeed: document.getElementById('speed-select'),
-            selectCount: document.getElementById('count-select')
+            selectCount: document.getElementById('count-select'),
+            selectStyle: document.getElementById('style-select')
         };
 
         this._bindEvents();
@@ -61,6 +62,17 @@ export class UIController {
                 this.toast.show(`注意：剩余人数不足 ${count} 人`, 'warning');
             }
         });
+
+        this.els.selectStyle.addEventListener('change', () => {
+            const styleLabels = {
+                single: '单条展示',
+                list: '列表滚动',
+                marquee: '跑马灯',
+                fade: '淡入淡出'
+            };
+            const selected = this.els.selectStyle.value;
+            this.toast.show(`滚动样式已切换为：${styleLabels[selected]}`, 'info');
+        });
     }
 
     async _handleStart() {
@@ -85,7 +97,8 @@ export class UIController {
 
         // 3. 开始动画
         const speedMode = this.els.selectSpeed.value;
-        this.animation.start(() => this.engine.getRandomSample(), speedMode);
+        const scrollStyle = this.els.selectStyle.value;
+        this.animation.start(() => this.engine.getRandomSample(), speedMode, scrollStyle);
 
         // 4. 等待动画结束并显示结果
         setTimeout(() => {
@@ -150,6 +163,7 @@ export class UIController {
         this.els.btnReset.disabled = isBusy;
         this.els.selectSpeed.disabled = isBusy;
         this.els.selectCount.disabled = isBusy;
+        this.els.selectStyle.disabled = isBusy;
 
         // 只更新文字，保留图标
         if (this.els.btnStartText) {

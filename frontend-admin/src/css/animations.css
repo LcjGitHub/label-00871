@@ -8,8 +8,69 @@
     to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes slideDownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
 /* 滚动动画通常由 JS 控制 transform，但这里可以定义一些辅助动画 */
 .rolling {
     /* 可以在这里添加模糊效果增强速度感 */
     /* filter: blur(1px); */
+}
+
+/* 列表滚动样式 */
+.lottery-list-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.list-item-enter {
+    animation: slideDownIn 0.3s ease-out;
+}
+
+/* 跑马灯样式 */
+.lottery-list-marquee {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-item {
+    display: inline-block;
+    animation: marqueeScroll 1s linear infinite;
+}
+
+/* 淡入淡出样式 */
+.lottery-list-fade li {
+    animation: fadeInOut 0.5s ease-in-out;
+}
+
+.fade-enter {
+    animation: fadeInOut 0.5s ease-in-out;
+}
+
+/* 单条样式保持默认，无需额外CSS */
+.lottery-list-single li {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 20px;
 }
